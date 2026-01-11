@@ -20,6 +20,10 @@ public class Display extends JPanel implements ActionListener{
     int count = 0;
     Timer gameloop;
 
+    int first = 150;
+    int second = 20;
+    int third = 20;
+
     Display(int bWidth, int bHeight)
     {
         this.boardWidth = bWidth;
@@ -112,23 +116,48 @@ public class Display extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        int first_flip = 38;
+        int second_flip = 85;
+        int third_flip = 160;
         if (count < 10000)
         {
             for (int i = 0; i < gridScale * gridScale; i++)
             {
+                if (i == 0)
+                {
+                    if (first < 208)
+                        first += 2;
+                    else if (second < 208)
+                        second += 1;
+                    else if (third < 208)
+                        third += 1;
+                    else {}
+                    /*if (count < first_flip)
+                        first += 3;
+                    else if (count < second_flip)
+                        second += 2;
+                    else if (count < third_flip)
+                        third += 2;
+                    else {}*/
+                }
+
                 Pendulum p = pendulums.get(i);
                 if (!p.hasFlipped)
                 {
                     Physics.updatePhysicsRK4(p, dt);
                     if (p.hasFlipped)
                     {
-                        Color newColor;
-                        if (count < 38)
-                            newColor = Color.green;
-                        else if (count < 85)
-                            newColor = Color.red;
-                        else 
-                            newColor = Color.magenta;
+                        Color newColor = new Color(first, second, third);
+                        /*if (count < first_flip)
+                        {
+                            newColor = new Color(5, 115 + first, 38 + first);
+                        }
+                        else if (count < second_flip)
+                            newColor = new Color(255, 0 + second, 75 + second);
+                        else if (count < third_flip)
+                            newColor = new Color(213, 92 + third, 255);
+                        else
+                            newColor = new Color(217, 174, 255);**/
                         pendulum_colors.set(i, newColor);
                     }
                 }
