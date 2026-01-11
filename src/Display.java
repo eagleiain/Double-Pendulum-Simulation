@@ -3,8 +3,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-//THE PENDULUM FLIPPING CAN BE DETERMINED THROUGH THE ANGLE INCREASING ABOVE PIIIIIII JUST ANALYZE THAT
-
 public class Display extends JPanel implements ActionListener{
     int boardWidth = 720;
     int boardHeight = boardWidth;
